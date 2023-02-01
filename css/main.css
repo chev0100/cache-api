@@ -60,3 +60,7 @@ li {
 #file_list span:hover,
 #file_list li.active {
 }
+
+.warning {
+  color: crimson;
+}
