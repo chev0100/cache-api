@@ -99,9 +99,9 @@ const APP = {
   getFiles() {
     APP.clearList();
     //display all the files in the cache
-    CACHE.getFromCache().then(APP.displayFiles);
+    CACHE.getFromCache().then(APP.displayFileNames);
   },
-  displayFiles(matches) {
+  displayFileNames(matches) {
     console.log(matches);
 
     //show the file names from the cache as a list.
@@ -119,7 +119,7 @@ const APP = {
           console.log(dateInt);
           let timestamp = new Date(dateInt).toLocaleDateString();
           console.log(timestamp);
-          return `<li><span class="filename">${filename} </span><span class="timestamp">|| created on: ${timestamp}</span> <button class="delete">Delete</button></li>`;
+          return `<li class="slide-down"><span class="filename">${filename} </span><span class="timestamp">created on: ${timestamp}</span> <button class="delete">Delete</button></li>`;
         })
         .join('');
       

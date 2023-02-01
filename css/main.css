@@ -3,12 +3,14 @@
   margin: 0;
   box-sizing: border-box;
   /* Add font stack */
+  font-family: 'Source Code Pro', sans-serif;
 }
 html {
-  font-size: 20px;
+  font-size: 62.5%;
 }
 body {
   min-height: 100vh;
+  font-size: 1.7rem;
 }
 header {
   background-color: #222;
@@ -17,46 +19,130 @@ header {
 }
 h1,
 h2 {
-  /* Add font stack */
-  font-size: 3rem;
+  font-size: 5rem;
+  font-weight: 800;
   color: #fff;
   background-color: #333;
+  padding-left: 1.6rem;
+  margin-bottom: 2rem;
 }
 main {
-  padding: 1rem 2rem;
+  
+}
+
+section {
+  margin-bottom: 3rem;
+  
+}
+
+section > * {
+  padding: 0 3rem;
+}
+
+section > *:first-child {
+  /* padding: 2rem; */
 }
 /* Add other CSS to customize the interface and make it your own */
-
+form {
+  margin-bottom: 3rem;
+}
 form p {
   padding-block: 0.5rem;
 }
 input {
   /* Add font stack */
-  padding: 0.25rem 1rem;
-  font-size: 1rem;
+  padding: 1rem;
+  font-size: 1.6rem;
 }
 button {
   /* Add font stack */
-  padding: 0.25rem 1rem;
-  margin-block: 0.5rem;
-  font-size: 1rem;
+  padding: 1rem 1.5rem;
+  font-size: 1.6rem;
   cursor: pointer;
+  background-color: #1F4662;
+  color:aliceblue;
+  border: none;
+  border:#222;
 }
+
+button:hover,
+button:focus-visible {
+  opacity: .9;
+}
+
 pre,
 code {
-  font-size: 1rem;
-  padding-block: 1rem;
+  font-size: 1.6rem;
+  padding-block: 1.6rem;
+  margin-top: 2rem;
 }
+
+code {
+  width: 500rem;
+  color: #1F4662;
+  background-color: aliceblue;
+  padding: 2rem;
+}
+
 ul {
-  margin-block: 1rem;
+  margin-block: 1.6rem;
 }
 li {
   list-style-position: inside;
-  padding-block: 0.5rem;
 }
 #file_list {
-  cursor: pointer;
+  list-style: none;
 }
+
+#file_list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-bottom: 0.25rem;
+  background-color: papayawhip;
+}
+
+@keyframes append-animate {
+	from {
+		transform: scaleY(0);
+		opacity: 0;
+	}
+	to {
+		transform: scaleY(1);
+		opacity: 1;
+	}
+}
+
+.slide-down {
+	transform-origin: 50% 0;
+	animation: append-animate .3s linear;
+}
+
+#file_list li span {
+  padding: 1rem 1.5rem;
+}
+
+#file_list .filename {
+  flex-grow: 1;
+  cursor: pointer;
+  background-color: #333;
+  color: aliceblue;
+}
+
+#file_list .filename:hover,
+#file_list .filename:focus-visible {
+  background-color: slategray;
+}
+
+#file_list .timestamp {
+  cursor: initial;
+}
+
+#file_list button {
+  cursor: pointer;
+  
+}
+
 #file_list span:hover,
 #file_list li.active {
 }
