@@ -4,7 +4,6 @@ import CACHE from './cache.js';
 //All the code dealing with the Cache is in the cache.js file.
 const APP = {
   itemList: [],
-  activeLI: '',
   init() {
     console.log(APP.itemList);
     //page loaded
@@ -85,14 +84,10 @@ const APP = {
     }
   },
   saveFile(filename, response) {
-    //create a url or request object
-    //save the file in the Cache
-    //when file has been saved,
-    //clear the displayed list
-    //and then update the list of files
-
     if (response) {
+      //create a url or request object, save the file in the Cache
       let url = new URL(filename, location.origin);
+      //when file has been saved, clear the displayed list and then update the list of files
       CACHE.saveInCache(url, response).then(APP.getFiles); // add warnings
     }
   },
@@ -102,8 +97,6 @@ const APP = {
     CACHE.getFromCache().then(APP.displayFileNames);
   },
   displayFileNames(matches) {
-    console.log(matches);
-
     //show the file names from the cache as a list.
     console.log(matches.length != 0);
     let list = document.getElementById('file_list');
@@ -114,29 +107,23 @@ const APP = {
       list.innerHTML = matches
         .map((match) => {
           let filename = match.split('/').at(-1);
-          console.log(filename);
           let dateInt = +filename.split('-')[1].split('.')[0];
-          console.log(dateInt);
           let timestamp = new Date(dateInt).toLocaleDateString();
-          console.log(timestamp);
           return `<li class="slide-down"><span class="filename">${filename} </span><span class="timestamp">created on: ${timestamp}</span> <button class="delete">Delete</button></li>`;
         })
         .join('');
       
       list.addEventListener('click', APP.handleFileClick);
-
     }
   },
   handleFileClick(ev) {
     ev.preventDefault();
     let el = ev.target.className;
     if (el === 'delete') {
-      console.log(`clicked ${el}`);
       APP.deleteFile(ev);
     }
 
     if (el === 'filename') {
-      console.log(`clicked ${el}`);
       APP.displayFileContents(ev);
     }
   },
@@ -144,22 +131,24 @@ const APP = {
     ev.preventDefault();
 
     let filename = ev.target.textContent;
+    
     let req = `./data/${filename}`;
-    console.log(req);
-    //get the list item from the file
-    //and show its contents in the <pre><code> area
+    //get the list item from the file and show its contents in the <pre><code> area
     CACHE.getFromCache(req).then(txt => {
       let code = document.querySelector('code');
-      code.innerHTML = txt;
+      let parsed = JSON.parse(txt);
+      code.innerHTML = parsed;
     });
-
+    // display filename in code display heading
+    let displayHeading = document.querySelector('.data_display span');
+    displayHeading.innerHTML = `Displaying ${filename}`;
   },
   deleteFile(ev) {
     ev.preventDefault();
+
     //user has clicked on a button in the file list
     let li = ev.target.closest(`li`);
     let filename = li.querySelector('span').textContent;
-    console.log(filename);
 
     //delete the file from the cache using the file name
     //remove the list item from the list if successful

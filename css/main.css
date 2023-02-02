@@ -26,13 +26,9 @@ h2 {
   padding-left: 1.6rem;
   margin-bottom: 2rem;
 }
-main {
-  
-}
 
 section {
   margin-bottom: 3rem;
-  
 }
 
 section > * {
@@ -143,10 +139,26 @@ li {
   
 }
 
-#file_list span:hover,
-#file_list li.active {
-}
-
 .warning {
   color: crimson;
+}
+
+.data_display h2 {
+  
+}
+
+.data_display span {
+  display: inline-flex;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.data_display span::before {
+  display: inline-block;
+  font-size:5rem;
+  content: "⇛";
+  color: aliceblue;
+  padding-right: 1rem;
 }
