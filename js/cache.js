@@ -37,7 +37,9 @@ const CACHE = {
         return cache.match(filename)
             .then((res) => {
                 //loop through response matches and get text content within files
+                res = res.clone();
                 let txt = res.text();
+                console.log(txt);
                 return txt;
             });
         });
